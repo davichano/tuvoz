@@ -1,4 +1,13 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/t.min.js": "/js/t.min.js",
+    "/css/t.min.css": "/css/t.min.css",
+    "/css/f.min.css": "/css/f.min.css",
+    "/img/01.png": "/img/01.png",
+    "/img/bg.jpg": "/img/bg.jpg",
+    "/img/member.png": "/img/member.png",
+    "/img/panel.png": "/img/panel.png",
+    "/img/people.png": "/img/people.png",
+    "/img/shapes/header.png": "/img/shapes/header.png",
+    "/img/shapes/speaker.png": "/img/shapes/speaker.png",
+    "/img/sponsors/sponsor_1.jpg": "/img/sponsors/sponsor_1.jpg"
 }
