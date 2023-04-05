@@ -26,6 +26,6 @@
     </main>
     @include('components.footer')
 </div>
-@yield('inlineScript')
+@yield('inlineScripts')
 </body>
 </html>

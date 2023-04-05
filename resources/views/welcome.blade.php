@@ -7,19 +7,19 @@
                     <div class="col-lg-6">
                         <div class="banner-content">
                             <ul id="countdown" class="countdown">
-                                <li class="clock-item"><span class="count-number days">05</span>
+                                <li class="clock-item"><span class="count-number days">04</span>
                                     <p class="count-text">Conciertos</p>
                                 </li>
-                                <li class="clock-item"><span class="count-number minutes">02</span>
+                                <li class="clock-item"><span class="count-number minutes">01</span>
                                     <p class="count-text">Meses</p>
                                 </li>
-                                <li class="clock-item"><span class="count-number hours">20</span>
+                                <li class="clock-item"><span class="count-number hours">84</span>
                                     <p class="count-text">Artistas</p>
                                 </li>
                             </ul>
                             <h1>Tu Voz Primera Temporada</h1>
                             <p>El nuevo formato que llega para impulsar el talento de los cajamarquinos.</p>
-                            <a href="#" class="lab-btn">Quiero votar</a>
+                            <a href="{{url('vote')}}" class="lab-btn">Quiero votar</a>
                             <div class="event-sponsored">
                                 <p>Website crafted By: DIDEPTI</p>
                             </div>
@@ -38,7 +38,9 @@
         <div class="container">
             <div class="about-thumb">
                 <img src="{{asset('img/people.png')}}" alt="about">
-                <a href="http://www.youtube.com/embed/4xe72U7mXNg?rel=0&amp;controls=0&amp;showinfo=0" class="play"
+                <a target="_blank"
+                   href="https://youtu.be/YIiJu5XG6_Y"
+                   class="play"
                    data-rel="lightcase:myCollection"><i class="fa fa-play"></i></a>
             </div>
             <div class="section-header text-center">
@@ -58,7 +60,7 @@
                 free</p>
             <ul class="about-button">
                 <li><a href="#" class="lab-btn">Ver participantes</a></li>
-                <li><a href="#" class="lab-btn">Ver jurado</a></li>
+                <li><a href="#speakers" class="lab-btn">Ver presentadores</a></li>
             </ul>
 
         </div><!-- container -->
@@ -69,24 +71,37 @@
                 <h2>Participantes</h2>
             </div>
             <div class="section-wrapper row justify-content-center">
+                <?php
+                foreach ($weeks as $week) {
+                foreach ($week->rounds as $round) {
+                ?>
                 <div class="col-md-4">
                     <div class="faq faq-style2 event-schedule-trigger">
-                        <h5 class="title">Semana 1</h5>
-                        <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                        <h5 class="title">{{$week->name}} | {{$round->name}}</h5>
+                        <div class="panel-group" id="accordion{{$round->id}}" role="tablist"
+                             aria-multiselectable="true">
+                            <?php
+                            foreach ($round->singers as $singer) {
+                            ?>
                             <div class="panel">
                                 <div class="faq-heading">
                                     <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
+                                        <a class="collapsed" href="#heading{{$singer->id}}" data-bs-toggle="collapse"
+                                           role="button"
                                            aria-expanded="false" aria-controls="heading1">
                                             <div class="ev-title">
                                                 <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
+                                                    <img style="width: 50px;height: 50px;border-radius: 50%;"
+                                                         src="{{asset('img/singers/')."/".$singer->picture}}"
+                                                         alt="event">
                                                     <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
+                                                        <img style="width: 50px;height: 50px;border-radius: 50%;"
+                                                             src="{{asset('img/singers/')."/".$singer->picture}}"
+                                                             alt="event">
                                                     </div>
                                                 </div>
                                                 <div class="ev-title-content">
-                                                    <h6>Juan Perez
+                                                    <h6>{{$singer->name}} {{$singer->lastname}}
                                                     </h6>
                                                 </div>
                                             </div>
@@ -95,7 +110,7 @@
                                             </span>
                                         </a>
                                     </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
+                                    <div id="heading{{$singer->id}}" class="faq-collapse collapse" role="tabpanel"
                                          aria-labelledby="heading1">
                                         <div class="faq-body">
                                             <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
@@ -104,10 +119,10 @@
                                                 omnis and fugats vitaes nemo minima rerums</p>
                                             <ul class="ev-list small text-muted">
                                                 <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
+                                                    <i class="fa-brands fa-instagram"></i> {{$singer->instagram}}
                                                 </li>
                                                 <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
+                                                    <i class="fa-brands fa-facebook"></i> {{$singer->facebook}}
                                                 </li>
                                             </ul>
 
@@ -115,1540 +130,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+                            }
+                            ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="faq faq-style2 event-schedule-trigger">
-                        <h5 class="title">Semana 2</h5>
-                        <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="faq faq-style2 event-schedule-trigger">
-                        <h5 class="title">Semana 3</h5>
-                        <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="faq faq-style2 event-schedule-trigger">
-                        <h5 class="title">Semana 4</h5>
-                        <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="faq faq-style2 event-schedule-trigger">
-                        <h5 class="title">Semana 5</h5>
-                        <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="faq faq-style2 event-schedule-trigger">
-                        <h5 class="title">Semana 6</h5>
-                        <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel">
-                                <div class="faq-heading">
-                                    <div class="faq-title">
-                                        <a class="collapsed" href="#heading1" data-bs-toggle="collapse" role="button"
-                                           aria-expanded="false" aria-controls="heading1">
-                                            <div class="ev-title">
-                                                <div class="ev-title-thumb">
-                                                    <img src="{{asset('img/member.png')}}" alt="event">
-                                                    <div class="child-thumb">
-                                                        <img src="{{asset('img/member.png')}}" alt="event">
-                                                    </div>
-                                                </div>
-                                                <div class="ev-title-content">
-                                                    <h6>Juan Perez
-                                                    </h6>
-                                                </div>
-                                            </div>
-                                            <span class="faq-icon pull-right">
-                                                <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <div id="heading1" class="faq-collapse collapse" role="tabpanel"
-                                         aria-labelledby="heading1">
-                                        <div class="faq-body">
-                                            <p>Lid est laborum dolo rumes fugats untras. Etharums serge quidem and
-                                                rerum facilis dolores
-                                                nemis
-                                                omnis and fugats vitaes nemo minima rerums</p>
-                                            <ul class="ev-list small text-muted">
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-instagram"></i> JuanPerez
-                                                </li>
-                                                <li class="ev-li-item">
-                                                    <i class="fa-brands fa-youtube"></i> Juan Perez Video Oficial
-                                                </li>
-                                            </ul>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                }
+                }
+                ?>
             </div>
         </div>
     </section>
-    <section class="speakers-section-14 padding-120">
+    <section id="speakers" class="speakers-section-14 padding-120">
         <div class="container">
             <div class="section-header">
-                <h2>Jurados</h2>
+                <h2>Presentadores</h2>
                 <p>Los mejores talentos dirigiendo a los nuevos talentos</p>
             </div>
             <div class="section-wrapper">
                 <div class="row justify-content-center">
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
                         <div class="speaker-item">
                             <div class="speaker-inner">
                                 <div class="speaker-thumb">
-                                    <img src="{{asset('img/panel.png')}}" alt="panel">
+                                    <img src="{{asset('img/speakers/angelica.png')}}" alt="panel">
                                 </div>
                                 <div class="speaker-content">
                                     <div class="spkr-content-title">
-                                        <h5>Jua Perez</h5>
-                                        <p>Cantante</p>
+                                        <h5>Angélica Zumarán</h5>
+                                        <p>Modelo</p>
                                     </div>
                                     <div class="spkr-content-details">
-                                        <p>Completey conceplua high quality
-                                            nice markes rather than long term
-                                            impact human capital</p>
+                                        <p>¡Sé feliz!</p>
                                         <ul class="social-icons">
                                             <li>
                                                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -1659,28 +174,25 @@
                                             <li><a href="#"><i class="fa-brands fa-facebook"></i></a>
                                             </li>
                                             <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mb-3">
                         <div class="speaker-item">
                             <div class="speaker-inner">
                                 <div class="speaker-thumb">
-                                    <img src="{{asset('img/panel.png')}}" alt="panel">
+                                    <img src="{{asset('img/speakers/fio.png')}}" alt="panel">
                                 </div>
                                 <div class="speaker-content">
                                     <div class="spkr-content-title">
-                                        <h5>Jua Perez</h5>
-                                        <p>Cantante</p>
+                                        <h5>Fiorela Muñoz</h5>
+                                        <p>Modelo</p>
                                     </div>
                                     <div class="spkr-content-details">
-                                        <p>Completey conceplua high quality
-                                            nice markes rather than long term
-                                            impact human capital</p>
+                                        <p>¡Sé feliz!</p>
                                         <ul class="social-icons">
                                             <li>
                                                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -1691,7 +203,64 @@
                                             <li><a href="#"><i class="fa-brands fa-facebook"></i></a>
                                             </li>
                                             <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="speaker-item">
+                            <div class="speaker-inner">
+                                <div class="speaker-thumb">
+                                    <img src="{{asset('img/speakers/francisco.png')}}" alt="panel">
+                                </div>
+                                <div class="speaker-content">
+                                    <div class="spkr-content-title">
+                                        <h5>Francisco Cervantes</h5>
+                                        <p>Comunicador</p>
+                                    </div>
+                                    <div class="spkr-content-details">
+                                        <p>¡Sé feliz!</p>
+                                        <ul class="social-icons">
+                                            <li>
+                                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
                                             </li>
+                                            <li>
+                                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="speaker-item">
+                            <div class="speaker-inner">
+                                <div class="speaker-thumb">
+                                    <img src="{{asset('img/speakers/sandra.png')}}" alt="panel">
+                                </div>
+                                <div class="speaker-content">
+                                    <div class="spkr-content-title">
+                                        <h5>Sandrita Quistán</h5>
+                                        <p>Comunicadora</p>
+                                    </div>
+                                    <div class="spkr-content-details">
+                                        <p>¡Sé feliz!</p>
+                                        <ul class="social-icons">
+                                            <li>
+                                                <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa-brands fa-facebook"></i></a>
+                                            </li>
+                                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -1705,8 +274,8 @@
     <section class="sponsor padding-120">
         <div class="container">
             <div class="section-header text-center">
-                <h2>Event Sponsors</h2>
-                <p>Check Who Makes The Event Possible</p>
+                <h2>Sponsors</h2>
+                <p>Los que hacen posible el programa</p>
             </div>
             <div class="sponsor-item">
                 <h5>Platinum Sponsors</h5>

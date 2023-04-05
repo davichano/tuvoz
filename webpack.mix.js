@@ -24,3 +24,5 @@ mix.sass('resources/sass/font.scss', 'public/css/f.min.css').options({
 });
 
 mix.copyDirectory('resources/img', 'public/img');
+
+mix.js('resources/js/cruds/vote/index.js', 'public/js/v/i.min.js');

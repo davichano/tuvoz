@@ -1,3 +1,5 @@
+window.Vue = require('vue');
+import {createApp, h} from 'vue';
 window._ = require('lodash');
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';

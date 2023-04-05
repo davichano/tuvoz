@@ -1,5 +1,6 @@
 {
     "/js/t.min.js": "/js/t.min.js",
+    "/js/v/i.min.js": "/js/v/i.min.js",
     "/css/t.min.css": "/css/t.min.css",
     "/css/f.min.css": "/css/f.min.css",
     "/img/01.png": "/img/01.png",
@@ -9,5 +10,19 @@
     "/img/people.png": "/img/people.png",
     "/img/shapes/header.png": "/img/shapes/header.png",
     "/img/shapes/speaker.png": "/img/shapes/speaker.png",
+    "/img/singers/brunolopez.png": "/img/singers/brunolopez.png",
+    "/img/singers/carlosbazan.png": "/img/singers/carlosbazan.png",
+    "/img/singers/carlosvazan.png": "/img/singers/carlosvazan.png",
+    "/img/singers/default.jpg": "/img/singers/default.jpg",
+    "/img/singers/geraldinemiranda.png": "/img/singers/geraldinemiranda.png",
+    "/img/singers/israelllanos.png": "/img/singers/israelllanos.png",
+    "/img/singers/juanculqui.png": "/img/singers/juanculqui.png",
+    "/img/singers/luisvasquez.png": "/img/singers/luisvasquez.png",
+    "/img/singers/sandrarojas.png": "/img/singers/sandrarojas.png",
+    "/img/singers/sandravasquez.png": "/img/singers/sandravasquez.png",
+    "/img/speakers/angelica.png": "/img/speakers/angelica.png",
+    "/img/speakers/fio.png": "/img/speakers/fio.png",
+    "/img/speakers/francisco.png": "/img/speakers/francisco.png",
+    "/img/speakers/sandra.png": "/img/speakers/sandra.png",
     "/img/sponsors/sponsor_1.jpg": "/img/sponsors/sponsor_1.jpg"
 }
